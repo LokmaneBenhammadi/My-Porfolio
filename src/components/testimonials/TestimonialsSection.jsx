@@ -1,6 +1,5 @@
 "use client"
-import { useRef, useEffect, useState } from "react"
-import { useMediaQuery } from "react-responsive"
+import { useRef, useEffect, useState, useMemo } from "react"
 import { useGSAP } from "@gsap/react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -16,15 +15,18 @@ const TestimonialsSection = () => {
     const sliderRef = useRef(null)
     const [currentDot, setCurrentDot] = useState(0)
     const [isScrolling, setIsScrolling] = useState(false)
+    const autoScrollIntervalRef = useRef(null)
 
-    const isMobile = useMediaQuery({ maxWidth: 767 })
+    // Use useMemo to prevent recalculation on resize
+    const isMobile = useMemo(() => {
+        if (typeof window === 'undefined') return false;
+        return window.innerWidth <= 767;
+    }, []);
 
-    const createCircularTestimonials = () => {
-        return [...testimonials, ...testimonials, ...testimonials]
-    }
-
-    const circularTestimonials = createCircularTestimonials()
+    // Create a circular array for infinite scroll
+    const circularTestimonials = [...testimonials, ...testimonials, ...testimonials]
     const originalLength = testimonials.length
+    const numberOfDots = originalLength
 
     useGSAP(() => {
         // Entrance animation for section
@@ -86,6 +88,7 @@ const TestimonialsSection = () => {
             opacity = Math.max(0, Math.min(1, opacity))
             card.style.opacity = opacity
             card.style.transform = `scale(${0.8 + opacity * 0.2})`
+            card.style.transformOrigin = "center center"
         })
 
         const cardBaseWidth = isMobile ? 358 : 579
@@ -95,30 +98,26 @@ const TestimonialsSection = () => {
         const adjustedScrollLeft = slider.scrollLeft
         const currentIndex = Math.round(adjustedScrollLeft / cardWidthWithGap)
 
-        let dotIndex = (currentIndex - originalLength) % originalLength
-        if (dotIndex < 0) dotIndex += originalLength
+        // Calculate which dot should be active based on the centered testimonial
+        let visibleIndex = (currentIndex - originalLength) % originalLength
+        if (visibleIndex < 0) visibleIndex += originalLength
+        
+        // With numberOfDots = originalLength, each dot represents one testimonial
+        setCurrentDot(visibleIndex)
 
-        const testimonialsPerSection = originalLength / 5
-        const currentSection = Math.floor(dotIndex / testimonialsPerSection)
-        setCurrentDot(Math.min(4, currentSection)) // Ensure it doesn't exceed 4 (0-4 range)
-
+        // Infinite scroll fix
         const totalCards = circularTestimonials.length
         const firstSectionEnd = originalLength * cardWidthWithGap
         const lastSectionStart = (totalCards - originalLength) * cardWidthWithGap
 
-        // If we're too close to the beginning, jump to equivalent position in middle section
         if (adjustedScrollLeft < firstSectionEnd * 0.1) {
-            const equivalentPosition = adjustedScrollLeft + originalLength * cardWidthWithGap
-            slider.scrollLeft = equivalentPosition
-        }
-        // If we're too close to the end, jump to equivalent position in middle section
-        else if (adjustedScrollLeft > lastSectionStart + originalLength * cardWidthWithGap * 0.9) {
-            const equivalentPosition = adjustedScrollLeft - originalLength * cardWidthWithGap
-            slider.scrollLeft = equivalentPosition
+            slider.scrollLeft = adjustedScrollLeft + originalLength * cardWidthWithGap
+        } else if (adjustedScrollLeft > lastSectionStart + originalLength * cardWidthWithGap * 0.9) {
+            slider.scrollLeft = adjustedScrollLeft - originalLength * cardWidthWithGap
         }
     }
 
-    const scrollToSection = (sectionIndex) => {
+    const scrollToSection = (dotIndex) => {
         if (!sliderRef.current || isScrolling) return
         setIsScrolling(true)
         const slider = sliderRef.current
@@ -127,16 +126,35 @@ const TestimonialsSection = () => {
         const cardGap = 32
         const cardWidthWithGap = cardBaseWidth + cardGap
 
-        // Calculate which testimonial starts each section (20% chunks)
-        const testimonialsPerSection = originalLength / 5
-        const testimonialIndex = Math.floor(sectionIndex * testimonialsPerSection)
-        const targetIndex = originalLength + testimonialIndex + 1
+        // Each dot represents one testimonial, so dotIndex is the testimonial index
+        const targetIndex = originalLength + dotIndex
 
         slider.scrollTo({
             left: targetIndex * cardWidthWithGap,
             behavior: "smooth",
         })
         setTimeout(() => setIsScrolling(false), 500)
+    }
+
+    const startAutoScroll = () => {
+        clearInterval(autoScrollIntervalRef.current)
+        autoScrollIntervalRef.current = setInterval(() => {
+            setCurrentDot(prevDot => {
+                const nextDot = (prevDot + 1) % numberOfDots // Use dynamic number of dots
+                scrollToSection(nextDot)
+                return nextDot
+            })
+        }, 10000) // 10 seconds
+    }
+
+    const resetAutoScroll = () => {
+        clearInterval(autoScrollIntervalRef.current)
+        startAutoScroll()
+    }
+
+    const handleDotClick = (dotIndex) => {
+        scrollToSection(dotIndex)
+        resetAutoScroll() // Reset the timer when user clicks
     }
 
     useEffect(() => {
@@ -152,32 +170,34 @@ const TestimonialsSection = () => {
         const handleScroll = () => {
             requestAnimationFrame(updateOpacity)
         }
-        const handleResize = () => {
-            requestAnimationFrame(updateOpacity)
-        }
 
         slider.addEventListener("scroll", handleScroll, { passive: true })
-        window.addEventListener("resize", handleResize, { passive: true })
 
         // Initial opacity update after setting scroll position
         setTimeout(() => updateOpacity(), 100)
 
+        // Start auto-scroll
+        startAutoScroll()
+
         return () => {
             slider.removeEventListener("scroll", handleScroll)
-            window.removeEventListener("resize", handleResize)
+            clearInterval(autoScrollIntervalRef.current)
         }
-    }, [isMobile])
+    }, [isMobile, numberOfDots])
 
-    const halfCardWidthForPadding = isMobile ? 358 / 2 : 289.5
+    // Calculate padding based on responsive card width
+    const halfCardWidthForPadding = useMemo(() => {
+        return isMobile ? 179 : 289.5; // Half of card width
+    }, [isMobile]);
 
     return (
-        <section ref={sectionRef} id="testimonials" className="stars py-20 overflow-hidden">
+        <section ref={sectionRef} id="testimonials" className="stars py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 overflow-hidden">
             <h2 className="section-title" ref={titleRef}>
                 What<span className="font-serif">'</span>s it like to work with me?
             </h2>
             <div
                 ref={sliderRef}
-                className="flex gap-8 overflow-x-auto scrollbar-hide"
+                className="flex gap-6 sm:gap-8 overflow-x-auto scrollbar-hide py-4"
                 style={{
                     scrollSnapType: "x mandatory",
                     WebkitOverflowScrolling: "touch",
@@ -192,13 +212,13 @@ const TestimonialsSection = () => {
                 ))}
             </div>
             {/* Dots Navigation */}
-            <div className="flex justify-center items-center gap-3 mt-12 md:mt-32">
-                {[...Array(5)].map((_, index) => (
+            <div className="flex justify-center items-center gap-3 mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32">
+                {[...Array(numberOfDots)].map((_, index) => (
                     <button
                         key={index}
-                        onClick={() => scrollToSection(index)}
+                        onClick={() => handleDotClick(index)}
                         className={`
-                            ${isMobile ? "w-4 h-4" : "w-6 h-6"}
+                            w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6
                             rounded-full transition-all duration-300 ${
                             currentDot === index ? "bg-violet-500 scale-125" : "bg-white hover:bg-white/70 cursor-pointer"
                         }`}
