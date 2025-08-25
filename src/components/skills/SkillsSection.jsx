@@ -61,23 +61,26 @@ const SkillsSection = () => {
             </h1>
 
             <div
-                className={`planets-container ${
+                className={`
+        planets-container ${
                     isMobile
                         ? "grid grid-cols-2 gap-x-4 gap-y-8 justify-items-center items-center"
                         : ""
-                }`}
+                }
+        mb-[120px] xl:mb-[250px] 2xl:mb-[300px]   // ✅ Tailwind handles responsive spacing
+    `}
                 style={{
                     width: "100%",
                     maxWidth: "1600px",
                     height: "auto",
                     minHeight: "600px",
                     position: "relative",
-                    marginTop: "100px",   // only top spacing
-                    marginBottom: "160px", // extra spacing before Other Skills
+                    marginTop: "100px",   // keep top spacing inline
                     marginLeft: "auto",
                     marginRight: "auto",
                 }}
             >
+
 
             {skillsInfos.map((skill, index) => (
                     <SkillPlanet

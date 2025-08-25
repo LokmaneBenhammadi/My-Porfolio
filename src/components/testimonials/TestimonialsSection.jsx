@@ -194,9 +194,12 @@ const TestimonialsSection = () => {
             id="testimonials"
             className="stars py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 overflow-hidden"
         >
-            <h2 className="section-title" ref={titleRef}>
-                What<span className="font-serif">'</span>s it like to work with me?
+            <h2 className="section-title text-center" ref={titleRef}>
+                What<span className="font-serif">'</span>s it like to work{" "}
+                <span className="block sm:hidden"></span> {/* forces break on mobile */}
+                with me?
             </h2>
+
             <div
                 ref={sliderRef}
                 className="flex gap-6 sm:gap-8 overflow-x-auto scrollbar-hide py-4"

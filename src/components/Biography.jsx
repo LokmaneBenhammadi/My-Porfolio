@@ -153,44 +153,44 @@ const Biography = () => {
                 </h2>
             </div>
             <div className="flex items-center md:flex-row flex-col-reverse md:gap-[152px] gap-11">
-                <div className="text-center md:text-left w-full">
+                {/* Text + Button */}
+                <div className="text-center md:text-left w-full space-y-[32px]">
                     <p
                         ref={resumeRef}
                         className="
-                            w-full px-5 max-w-[967px] mx-auto md:mx-0
-                            font-fsp-bold font-normal leading-relaxed
-                            text-center md:text-left
-                            text-[10px] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl
-                            mb-4 md:mb-8
-                          "
+                                  w-full px-5 max-w-[967px] mx-auto md:mx-0
+                                  font-fsp-bold font-normal leading-relaxed
+                                  text-center md:text-left
+                                  text-[10px] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl
+                                "
                     >
-                        <span className="block">
-                            I<span className="font-serif">'</span>m a passionate UI UX designer with a sharp eye for detail and a love
-                            for intuitive, user centred design.
-                        </span>
+            <span className="block">
+              I<span className="font-serif">'</span>m a passionate UI UX designer with a sharp eye for detail and a love
+              for intuitive, user centred design.
+            </span>
                         <span className="inline md:block">
-                            Currently studying at the Higher School of Computer Science in Sidi Bel Abbes, I blend creativity with
-                            clear thinking to turn ideas into clean, functional products.
-                        </span>
+              Currently studying at the Higher School of Computer Science in Sidi Bel Abbes, I blend creativity with
+              clear thinking to turn ideas into clean, functional products.
+            </span>
                         <span className="inline md:block">
-                            I<span className="font-serif">'</span>ve worked on projects like{" "}
+              I<span className="font-serif">'</span>ve worked on projects like{" "}
                             <span className="text-violet-primary">Dinaseti</span> and{" "}
                             <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
-                            understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
-                            design all focused on creating experiences that truly work for users.
-                        </span>
+              understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
+              design all focused on creating experiences that truly work for users.
+            </span>
                     </p>
 
-                    <div className="text-center md:text-left">
-                        <PurpleButton
-                            onClick={downloadResume}
-                            className="btn-purple text-xs px-[10px] py-[6px] rounded-md md:text-xl md:py-4 md:px-7 md:rounded-2xl"
-                            ref={purpleButtonRef}
-                        >
-                            Download resume
-                        </PurpleButton>
-                    </div>
+                    <PurpleButton
+                        onClick={downloadResume}
+                        className="btn-purple text-xs px-[10px] py-[6px] md:ml-4 rounded-md md:text-xl md:py-4 md:px-7 md:rounded-2xl"
+                        ref={purpleButtonRef}
+                    >
+                        Download resume
+                    </PurpleButton>
                 </div>
+
+                {/* Astronaut Image */}
                 <div className="relative w-fit">
                     <img
                         ref={astroRef}

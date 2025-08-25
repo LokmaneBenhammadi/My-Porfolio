@@ -37,9 +37,11 @@ const ContactInfo = ({ infoIcon, infoTitle, infoContent }) => {
             ref={containerRef}
             className="w-full h-auto p-[10px] rounded-[5px] mb-[16px] flex items-center justify-start gap-[12px] md:w-full md:h-auto md:p-3 lg:p-4 xl:p-5 2xl:px-[18px] 2xl:py-4 bg-blue-night md:rounded-lg lg:rounded-xl xl:rounded-2xl border-[1.5px] border-violet-secondary md:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 transition-all duration-300"
         >
-            <div className="text-violet-primary size-4 xl:size-5 2xl:size-6 contact-icon mr-3">
+            <div className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8
+                text-violet-primary contact-icon mr-3">
                 {infoIcon}
             </div>
+
             <div>
                 <h3 className="font-fsp-bold font-normal text-[#464B60] text-[8px] lg:text-[10px] xl:text[10px] 2xl:text-xs md:mb-1 lg:mb-2 xl:mb-2 2xl:mb-3">
                     {infoTitle}
