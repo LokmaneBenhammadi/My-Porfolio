@@ -72,7 +72,7 @@ const SkillsSection = () => {
                     height: "auto",
                     minHeight: "600px",
                     position: "relative",
-                    margin: "0 auto",
+                    margin: "100px auto",
                 }}
             >
                 {skillsInfos.map((skill, index) => (

@@ -124,7 +124,7 @@ body {
 
 /* Section Title Utility Class */
 .section-title {
-    @apply font-fsp-stencil font-medium text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
+    @apply font-fsp-stencil font-medium w-[330px] md:w-fit text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-white mx-auto text-center mb-12 md:mb-[126px];
 }
 
 .split-char {
@@ -231,7 +231,7 @@ body {
         @apply inset-0 size-full bg-[url("/images/global/Stars.webp")];
     }
     #hero {
-        @apply relative z-10 w-full min-h-[90vh] flex items-center justify-center;
+        @apply relative z-10 w-full min-h-[80vh] md:min-h-[90vh] flex items-center justify-center;
         .content {
             @apply text-center px-5 2xl:-mb-20;
 
@@ -266,7 +266,7 @@ body {
         }
     }
     #projects {
-        @apply relative z-10 w-full min-h-[80vh] py-[100px];
+        @apply relative z-10 w-full min-h-[70vh] md:min-h-[80vh] py-[100px];
     }
 
     .projects-wrapper {
