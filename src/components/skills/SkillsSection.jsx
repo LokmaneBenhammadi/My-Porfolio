@@ -72,10 +72,14 @@ const SkillsSection = () => {
                     height: "auto",
                     minHeight: "600px",
                     position: "relative",
-                    margin: "100px auto",
+                    marginTop: "100px",   // only top spacing
+                    marginBottom: "160px", // extra spacing before Other Skills
+                    marginLeft: "auto",
+                    marginRight: "auto",
                 }}
             >
-                {skillsInfos.map((skill, index) => (
+
+            {skillsInfos.map((skill, index) => (
                     <SkillPlanet
                         key={`skill-${index}`}
                         sizes={skill.sizes}

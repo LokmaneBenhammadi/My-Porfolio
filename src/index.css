@@ -233,7 +233,7 @@ body {
     #hero {
         @apply relative z-10 w-full min-h-[90vh] flex items-center justify-center;
         .content {
-            @apply text-center px-5 2xl:-mb-20;
+            @apply text-center px-5 -mb-40;
 
             p:first-of-type {
                 @apply font-fsp-bold text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-[32px] font-normal;
