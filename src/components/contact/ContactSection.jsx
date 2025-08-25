@@ -215,7 +215,7 @@ const ContactSection = () => {
                     >
                         Follow me
                     </h3>
-                    <div ref={socialRef} className="flex justify-center md:justify-start">
+                    <div ref={socialRef} className="flex gap-5 md:gap-3 xl:gap-5 2xl:gap-6 justify-center md:justify-start">
                         <a href={linkedIn} target="_blank" aria-label="linkedIn" rel="noreferrer">
                             <Social socialIcon={<FaLinkedinIn className="text-violet-primary size-5" />} />
                         </a>
