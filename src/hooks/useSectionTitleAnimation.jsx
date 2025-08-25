@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
-import {useMediaQuery} from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -14,19 +14,23 @@ export const useSectionTitleAnimation = () => {
     useGSAP(() => {
         if (!titleRef.current) return;
 
+        // Split into words + chars
         const titleSplit = new SplitText(titleRef.current, {
-            type: "chars",
+            type: "words,chars",
+            wordsClass: "split-word",
             charsClass: "split-char",
             tag: "span",
         });
 
-        gsap.set(titleSplit.chars, { opacity: 0, y: 50 });
+        // Initial state (words invisible, moved down)
+        gsap.set(titleSplit.words, { opacity: 0, y: 50 });
 
-        gsap.to(titleSplit.chars, {
+        // Animate words in sequence
+        gsap.to(titleSplit.words, {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            stagger: 0.03,
+            stagger: 0.15,
             ease: "back.out(1.7)",
             scrollTrigger: {
                 trigger: titleRef.current,
@@ -34,6 +38,7 @@ export const useSectionTitleAnimation = () => {
             },
         });
 
+        // Cleanup
         return () => {
             titleSplit.revert();
         };

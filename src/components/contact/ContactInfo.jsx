@@ -35,13 +35,18 @@ const ContactInfo = ({ infoIcon, infoTitle, infoContent }) => {
     return (
         <div
             ref={containerRef}
-            // Added gap-[12px] for icon and text div
-            className="w-full h-auto p-[10px] rounded-[5px] mb-[16px] flex items-center justify-start gap-[12px] md:w-[552px] md:h-[78px] bg-blue-night md:rounded-lg border-[1.5px] border-violet-secondary md:px-4 md:py-[15.5px] md:gap-3 md:mb-6 cursor-pointer transition-all duration-300"
+            className="w-full h-auto p-[10px] rounded-[5px] mb-[16px] flex items-center justify-start gap-[12px] md:w-full md:h-auto md:p-3 lg:p-4 xl:p-5 2xl:px-[18px] 2xl:py-4 bg-blue-night md:rounded-lg lg:rounded-xl xl:rounded-2xl border-[1.5px] border-violet-secondary md:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 transition-all duration-300"
         >
-            <div className="text-violet-primary size-4 md:size-6 contact-icon mr-3">{infoIcon}</div>
+            <div className="text-violet-primary size-4 xl:size-5 2xl:size-6 contact-icon mr-3">
+                {infoIcon}
+            </div>
             <div>
-                <h3 className="font-fsp-bold font-normal text-[#464B60] text-[8px] md:text-xs md:mb-2">{infoTitle}</h3>
-                <span className="block text-[10px] md:text-sm text-white font-poppins-medium font-normal">{infoContent}</span>
+                <h3 className="font-fsp-bold font-normal text-[#464B60] text-[8px] lg:text-[10px] xl:text[10px] 2xl:text-xs md:mb-1 lg:mb-2 xl:mb-2 2xl:mb-3">
+                    {infoTitle}
+                </h3>
+                <span className="block text-[10px] lg:text-xs xl:text-xs 2xl:text-sm text-white font-poppins-medium font-normal">
+          {infoContent}
+        </span>
             </div>
         </div>
     )

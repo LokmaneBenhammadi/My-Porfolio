@@ -172,6 +172,15 @@ body {
     border: 0;
 }
 
+.split-word {
+    display: inline-block;
+    white-space: nowrap; /* keeps whole word together */
+}
+
+.split-char {
+    display: inline-block;
+}
+
 
 @layer components {
     main {
@@ -222,15 +231,15 @@ body {
         @apply inset-0 size-full bg-[url("/images/global/Stars.webp")];
     }
     #hero {
-        @apply relative z-10 w-full min-h-dvh;
+        @apply relative z-10 w-full min-h-[90vh];
         .content {
             @apply container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-30 top-[60vw] md:top-[32vh] px-0 sm:px-5 text-center;
 
             p:first-of-type {
-                @apply font-fsp-bold text-sm md:text-[32px] font-normal;
+                @apply font-fsp-bold text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-[32px] font-normal;
             }
             h1 {
-                @apply font-fsp-stencil font-medium text-5xl leading-[120%] md:text-[160px] mt-2 transition-all duration-100;
+                @apply font-fsp-stencil font-medium text-5xl leading-[120%] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[7vw] mt-2 transition-all duration-100;
             }
             h1:hover {
                 color: #fff;
@@ -239,27 +248,24 @@ body {
                 transition: text-shadow 0.3s ease;
             }
             p:last-of-type {
-                @apply font-medium font-fsp-bold w-[95vw] md:w-[1230px] text-center text-[10px] md:text-[28px] mx-auto mt-8;
+                @apply font-medium font-fsp-bold text-center text-[10px] sm:text-xs md:text-sm lg:text-xl xl:text-2xl 2xl:text-[28px] mx-auto mt-8;
             }
             div {
-                @apply mt-6 md:mt-18 mx-auto w-fit;
+                @apply mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-18 mx-auto w-fit;
             }
         }
     }
     #about {
-        @apply relative z-10 w-full min-h-dvh overflow-hidden;
+        @apply relative z-10 w-full min-h-[85vh] overflow-hidden;
         div {
             @apply relative w-full max-w-[1800px] mx-auto mt-12 md:mt-[150px] px-0 md:px-5;
             div {
-                @apply w-[358px] md:w-[967px];
-                p {
-                    @apply w-full font-fsp-bold text-[10px] text-center md:text-left md:text-2xl font-normal leading-[1.8] mb-4 md:mb-8;
-                }
+                @apply w-full max-w-[967px];
             }
         }
     }
     #projects {
-        @apply relative z-10 w-full min-h-dvh py-[100px];
+        @apply relative z-10 w-full min-h-[80vh] py-[100px];
     }
 
     .projects-wrapper {
@@ -267,41 +273,53 @@ body {
     }
 
     .projects-carousel-container {
-        @apply overflow-hidden;
-        /* Default for desktop */
-        max-width: 1680px;
-        /* 3 cards * 480px + 2 gaps * 120px */
+        @apply overflow-hidden rounded-2xl md:rounded-[20px];
+        max-width: 1680px; /* ✅ Default: xl & 2xl → 3 cards */
         margin: 0 auto;
     }
-    /* New flex container for all project cards */
+
     .projects-flex-row {
         @apply flex flex-nowrap;
-        /* Ensure no wrapping */
         max-height: 600px;
     }
+
     .project-card-image {
-        @apply rounded-[20px] h-[234px] md:h-[514px] transition-all duration-300 overflow-hidden flex-shrink-0;
-        transform-style: preserve-3d;
-        /* Keep for potential future 3D effects or if GSAP needs it */
-        backface-visibility: hidden;
-        transform-origin: center center;
+        @apply rounded-2xl md:rounded-[20px] transition-all duration-300 overflow-hidden flex-shrink-0;
         will-change: transform, opacity;
-        /* Default for desktop */
-        width: 480px;
-        margin-right: 120px;
-        /* Desktop gap */
+
+        /* Default → 3 cards per row */
+        flex: 0 0 calc((100% - 2rem * 2) / 3); /* 3 cards with gap-8 */
+        margin-right: 2rem;
     }
+
     .project-card-image:last-child {
         margin-right: 0;
-        /* No margin on the last card */
     }
-    .project-mockup-section {
-        @apply w-full h-[110px] md:h-[262px] overflow-hidden;
-        img {
-            @apply w-full h-full object-cover;
-            /* Added object-cover for image fitting */
+
+    @media (max-width: 1279px) {
+        .project-card-image {
+            flex: 0 0 calc((100% - 1.5rem) / 2); /* 2 cards with gap-6 */
+            margin-right: 1.5rem;
         }
     }
+
+    @media (max-width: 640px) {
+        .project-card-image {
+            flex: 0 0 100%; /* Full width */
+            margin-right: 0;
+        }
+    }
+
+
+    /* Mockup */
+    .project-mockup-section {
+        @apply w-full h-[110px] md:h-[262px] overflow-hidden;
+    }
+    .project-mockup-section img {
+        @apply w-full h-full object-cover;
+    }
+
+    /* Content */
     .project-content-section {
         @apply text-center h-full bg-blue-night py-[10px] md:py-6;
         color: white;
@@ -322,32 +340,29 @@ body {
     .see-more-wrapper {
         @apply flex justify-center;
     }
-    /* Responsive adjustments for project cards and container */
-    @media (max-width: 1024px) {
+
+    /* ✅ Tablet (md & lg → 2 cards) */
+    @media (max-width: 1279px) {
         .projects-carousel-container {
-            max-width: 984px;
-            /* 2 cards * 480px + 1 gap * 24px */
+            max-width: 984px; /* 2 cards * 480px + 1 gap * 24px */
         }
-        .project-card-image {
-            width: 480px;
-            /* Still 480px for tablet */
-            margin-right: 24px;
-            /* Tablet gap (gap-6) */
-        }
+        /*.project-card-image {*/
+        /*    width: 480px;*/
+        /*    margin-right: 24px; !* Smaller gap *!*/
+        /*}*/
     }
 
+    /* ✅ Mobile (sm → 1 card) */
     @media (max-width: 640px) {
         .projects-carousel-container {
-            max-width: 250px;
-            /* 1 card * 250px */
+            max-width: 250px; /* 1 card */
         }
-        .project-card-image {
-            width: 250px;
-            /* Mobile card width */
-            margin-right: 24px;
-            /* Mobile gap (gap-6) */
-        }
+    /*    .project-card-image {*/
+    /*        width: 250px;*/
+    /*        margin-right: 24px;*/
+    /*    }*/
     }
+
     #skills {
         @apply relative z-10 w-full min-h-dvh overflow-hidden;
 
@@ -360,6 +375,9 @@ body {
             @apply text-center font-fsp-stencil font-medium text-xl md:text-[40px] mb-5 md:mb-20;
         }
     }
+
+
+
     #testimonials {
         @apply relative z-10 w-full max-h-dvh overflow-hidden;
         h2 {

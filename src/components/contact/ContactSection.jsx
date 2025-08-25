@@ -11,14 +11,12 @@ import { FiPhone } from "react-icons/fi"
 import { GrLocation } from "react-icons/gr"
 import { FaLinkedinIn } from "react-icons/fa6"
 import { FaBehance } from "react-icons/fa"
-import { TbBrandGithub } from "react-icons/tb";
+import { TbBrandGithub } from "react-icons/tb"
 import MessageBox from "./MessageBox.jsx"
 import { useMediaQuery } from "react-responsive"
 import { useSectionTitleAnimation } from "../../hooks/useSectionTitleAnimation"
 import { socialLinks } from "../../assets/constants"
 import Toast from "./Toast.jsx"
-
-
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
@@ -35,8 +33,7 @@ const ContactSection = () => {
     const followMeTitleRef = useRef(null)
     const { linkedIn, github, behance } = socialLinks
 
-
-    const isMobile = useMediaQuery({maxWidth: 767})
+    const isMobile = useMediaQuery({ maxWidth: 767 })
 
     useGSAP(() => {
         const section = sectionRef.current
@@ -46,41 +43,41 @@ const ContactSection = () => {
         // Split text elements
         const paragraphSplit = new SplitText(paragraphRef.current, {
             type: "lines",
-            linesClass: "line-child"
-        });
+            linesClass: "line-child",
+        })
 
         // Cleanup ARIA
-        paragraphSplit.lines.forEach(line => {
-            line.removeAttribute("aria-label");
-            line.removeAttribute("role");
-        });
+        paragraphSplit.lines.forEach((line) => {
+            line.removeAttribute("aria-label")
+            line.removeAttribute("role")
+        })
 
-        paragraphRef.current.removeAttribute("aria-label");
+        paragraphRef.current.removeAttribute("aria-label")
 
         // Set initial states
         gsap.set([getInTouchTitleRef.current, followMeTitleRef.current], {
             opacity: 0,
-            y: 20
+            y: 20,
         })
         gsap.set(paragraphSplit.lines, {
             opacity: 0,
-            y: 20
+            y: 20,
         })
         gsap.set(contactInfoRefs.current, {
             opacity: 0,
-            y: 20
+            y: 20,
         })
         gsap.set(socialRef.current, {
             opacity: 0,
-            y: 20
+            y: 20,
         })
         gsap.set(messageBoxRef.current, {
             opacity: 0,
-            y: 20
+            y: 20,
         })
         gsap.set(astronaut, {
             opacity: 0,
-            scale: 0.8
+            scale: 0.8,
         })
 
         // Create master timeline
@@ -89,62 +86,81 @@ const ContactSection = () => {
                 trigger: section,
                 start: isMobile ? "top 50%" : "top 75%",
                 end: "bottom 70%",
-            }
-        });
-
+            },
+        })
 
         // 1. "Get in touch" title first
         masterTl.to(getInTouchTitleRef.current, {
             opacity: 1,
             y: 0,
             duration: 0.6,
-            ease: "back.out(1.7)"
+            ease: "back.out(1.7)",
         })
 
         // 2. Paragraph appears line by line
-        masterTl.to(paragraphSplit.lines, {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: "power3.out"
-        }, "+=0.2")
+        masterTl.to(
+            paragraphSplit.lines,
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.1,
+                ease: "power3.out",
+            },
+            "+=0.2",
+        )
 
         // 3. Message box AND contact info cards appear simultaneously
-        masterTl.to([messageBoxRef.current, ...contactInfoRefs.current], {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: {
-                each: 0.1,
-                from: "start"
+        masterTl.to(
+            [messageBoxRef.current, ...contactInfoRefs.current],
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: {
+                    each: 0.1,
+                    from: "start",
+                },
+                ease: "power2.out",
             },
-            ease: "power2.out"
-        }, "+=0.1")
+            "+=0.1",
+        )
 
         // 4. "Follow me" title appears
-        masterTl.to(followMeTitleRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "back.out(1.7)"
-        }, "+=0.2")
+        masterTl.to(
+            followMeTitleRef.current,
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+            },
+            "+=0.2",
+        )
 
         // 5. Social icons appear
-        masterTl.to(socialRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power2.out"
-        }, "+=0.1")
+        masterTl.to(
+            socialRef.current,
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                ease: "power2.out",
+            },
+            "+=0.1",
+        )
 
         // Astronaut animation (independent timing)
-        masterTl.to(astronaut, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)"
-        }, "-=0.5")
+        masterTl.to(
+            astronaut,
+            {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)",
+            },
+            "-=0.5",
+        )
 
         // Continuous astronaut floating animation
         gsap.to(astronaut, {
@@ -152,7 +168,7 @@ const ContactSection = () => {
             duration: 3,
             repeat: -1,
             yoyo: true,
-            ease: "sine.inOut"
+            ease: "sine.inOut",
         })
 
         return () => {
@@ -161,21 +177,21 @@ const ContactSection = () => {
     }, [])
 
     return (
-        <section id="contact" className="stars p-4 md:p-0" ref={sectionRef}>
+        <section id="contact" className="stars p-4 md:p-8 lg:p-12 xl:p-16" ref={sectionRef}>
             <h2 ref={titleRef} className="section-title">
                 Ready to build something great together?
             </h2>
-            <div className="contact-container flex flex-col gap-12 items-center md:w-[1680px] mx-auto md:flex-row md:gap-[168.5px]">
-                <div className="w-full h-auto p-0 order-3 md:order-1 md:w-[552px]">
+            <div className="contact-container flex flex-col gap-12 items-center md:max-w-7xl md:w-full lg:max-w-[90rem] xl:max-w-[100rem] 2xl:max-w-[110rem] mx-auto md:flex-row md:gap-16 lg:gap-20 xl:gap-24 2xl:gap-28">
+                <div className="w-full h-auto p-0 order-3 md:order-1 md:w-auto md:flex-1 md:max-w-lg lg:max-w-xl xl:max-w-2xl">
                     <h3
                         ref={getInTouchTitleRef}
-                        className="font-fsp-stencil font-medium text-[12px] mb-[8px] text-white text-center md:text-xl md:mb-4 md:text-left"
+                        className="font-fsp-stencil font-medium text-[12px] mb-[8px] text-white text-center md:text-base lg:text-lg xl:text-xl md:mb-3 lg:mb-4 xl:mb-5 2xl:mb-5 md:text-left"
                     >
                         Get in touch
                     </h3>
                     <p
                         ref={paragraphRef}
-                        className="font-fsp-bold text-[8px] text-center mb-[20px] text-white md:text-sm md:text-left md:mb-8 md:w-full"
+                        className="font-fsp-bold text-[8px] text-center mb-[20px] text-white md:text-xs lg:text-sm 2xl:text-base md:text-left md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-8 md:w-full md:leading-relaxed lg:leading-relaxed xl:leading-relaxed"
                     >
                         I'm always interested in new opportunities and exciting projects. Whether you have a question or just want
                         to say hi, I ll try my best to get back to you
@@ -195,25 +211,24 @@ const ContactSection = () => {
                     </div>
                     <h3
                         ref={followMeTitleRef}
-                        className="font-fsp-stencil font-medium text-[12px] mb-[10px] text-white text-center md:text-lg md:mb-4 md:text-left"
+                        className="font-fsp-stencil font-medium text-xs mb-[10px] text-white text-center md:text-sm lg:text-base xl:text-lg 2xl:text-lg md:mb-3 lg:mb-4 xl:mb-5 2xl:mb-5 md:text-left"
                     >
                         Follow me
                     </h3>
                     <div ref={socialRef} className="flex justify-center md:justify-start">
-                        <a href={linkedIn} target="_blank" aria-label="linkedIn">
-                            <Social socialIcon={<FaLinkedinIn className="text-violet-primary size-5" />}/>
+                        <a href={linkedIn} target="_blank" aria-label="linkedIn" rel="noreferrer">
+                            <Social socialIcon={<FaLinkedinIn className="text-violet-primary size-5" />} />
                         </a>
-                        <a href={behance} target="_blank" aria-label="behance">
-                            <Social socialIcon={<FaBehance className="text-violet-primary size-5" />}/>
+                        <a href={behance} target="_blank" aria-label="behance" rel="noreferrer">
+                            <Social socialIcon={<FaBehance className="text-violet-primary size-5" />} />
                         </a>
-                        <a href={github} target="_blank" aria-label="github">
-                            <Social socialIcon={<TbBrandGithub className="text-violet-primary size-5" />}/>
+                        <a href={github} target="_blank" aria-label="github" rel="noreferrer">
+                            <Social socialIcon={<TbBrandGithub className="text-violet-primary size-5" />} />
                         </a>
                     </div>
                 </div>
 
-                {/* Block 2: Image */}
-                <div className="w-[132px] h-[242px] order-1 md:order-2 md:w-[241px] md:h-auto md:mb-0">
+                <div className="w-[132px] h-[242px] order-1 md:order-2 md:w-48 md:h-auto md:hidden lg:block lg:w-56 xl:w-64 2xl:w-72 md:mb-0 flex-shrink-0">
                     <img
                         ref={astronautRef}
                         src="/images/contact/Astro_2.webp"
@@ -222,8 +237,7 @@ const ContactSection = () => {
                     />
                 </div>
 
-                {/* Block 3: Message Box */}
-                <div className="md:mb-0 order-2 md:order-3" ref={messageBoxRef}>
+                <div className="md:mb-0 order-2 md:order-3 md:flex-1 md:max-w-lg lg:max-w-xl xl:max-w-2xl" ref={messageBoxRef}>
                     <MessageBox isMobile={isMobile} setToast={setToast} />
                 </div>
             </div>

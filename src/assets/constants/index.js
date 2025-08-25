@@ -74,117 +74,118 @@ export const projectsData = [
 export const skillsInfos = [
     {
         sizes: {
-            fontSize: "26px",
-            bgSize: "252px",
+            fontSize: "clamp(14px, 1.2vw, 26px)", // scales text
+            bgSize: "clamp(100px, 15vw, 252px)",  // scales planet
         },
         infos: {
             text: "UI UX",
             bg: Ui_ux,
         },
         dimensions: {
-            left: "0px",
-            top: "32px",
+            left: "clamp(0px, 2vw, 12px)",  // responsive positioning
+            top: "clamp(10px, 4vh, 32px)",
         },
     },
     {
         sizes: {
-            fontSize: "21px",
-            bgSize: "200px",
+            fontSize: "clamp(12px, 1vw, 21px)",
+            bgSize: "clamp(90px, 12vw, 200px)",
         },
         infos: {
             text: "Prototyping",
             bg: Prototyping,
         },
         dimensions: {
-            left: "383px",
-            top: "68px",
+            left: "clamp(120px, 22vw, 352px)",
+            top: "clamp(20px, 6vh, 68px)",
         },
     },
     {
         sizes: {
-            fontSize: "26px",
-            bgSize: "252px",
+            fontSize: "clamp(14px, 1.2vw, 26px)",
+            bgSize: "clamp(100px, 15vw, 252px)",
         },
         infos: {
             text: "Figma",
             bg: Figma,
         },
         dimensions: {
-            left: "714px",
-            top: "3px",
+            left: "clamp(220px, 40vw, 686px)",
+            top: "clamp(0px, 1vh, 3px)",
         },
     },
     {
         sizes: {
-            fontSize: "21px",
-            bgSize: "200px",
+            fontSize: "clamp(12px, 1vw, 21px)",
+            bgSize: "clamp(90px, 12vw, 200px)",
         },
         infos: {
             text: "Wireframing",
             bg: Wireframing,
         },
         dimensions: {
-            left: "1097px",
-            top: "29px",
+            left: "clamp(340px, 60vw, 1070px)",
+            top: "clamp(10px, 4vh, 29px)",
         },
     },
     {
         sizes: {
-            fontSize: "26px",
-            bgSize: "252px",
+            fontSize: "clamp(14px, 1.2vw, 26px)",
+            bgSize: "clamp(100px, 15vw, 252px)",
         },
         infos: {
             text: "Adobe XD",
             bg: AdobeXD,
         },
         dimensions: {
-            left: "1428px",
-            top: "5px",
+            left: "clamp(450px, 80vw, 1400px)",
+            top: "clamp(0px, 1vh, 5px)",
         },
     },
     {
         sizes: {
-            fontSize: "21px",
-            bgSize: "200px",
+            fontSize: "clamp(12px, 1vw, 21px)",
+            bgSize: "clamp(90px, 12vw, 200px)",
         },
         infos: {
             text: "Design Thinking",
             bg: DesignThinking,
         },
         dimensions: {
-            left: "191px",
-            top: "374px",
+            left: "clamp(60px, 12vw, 163px)",
+            top: "clamp(100px, 40vh, 374px)",
         },
     },
     {
         sizes: {
-            fontSize: "26px",
-            bgSize: "252px",
+            fontSize: "clamp(14px, 1.2vw, 26px)",
+            bgSize: "clamp(100px, 15vw, 252px)",
         },
         infos: {
             text: "Coding",
             bg: Coding,
         },
         dimensions: {
-            left: "714px",
-            top: "411px",
+            left: "clamp(220px, 40vw, 686px)",
+            top: "clamp(120px, 60vh, 411px)",
         },
     },
     {
         sizes: {
-            fontSize: "21px",
-            bgSize: "200px",
+            fontSize: "clamp(12px, 1vw, 21px)",
+            bgSize: "clamp(90px, 12vw, 200px)",
         },
         infos: {
             text: "User Research",
             bg: Researche,
         },
         dimensions: {
-            left: "1289px",
-            top: "374px",
+            left: "clamp(380px, 70vw, 1270px)",
+            top: "clamp(100px, 50vh, 374px)",
         },
     },
 ]
+
 
 export const otherSkills = [
     {

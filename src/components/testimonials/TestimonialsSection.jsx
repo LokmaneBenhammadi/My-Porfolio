@@ -98,21 +98,18 @@ const TestimonialsSection = () => {
         const adjustedScrollLeft = slider.scrollLeft
         const currentIndex = Math.round(adjustedScrollLeft / cardWidthWithGap)
 
-        // Calculate which dot should be active based on the centered testimonial
+        // Calculate active dot index (wrap around original length)
         let visibleIndex = (currentIndex - originalLength) % originalLength
         if (visibleIndex < 0) visibleIndex += originalLength
-        
-        // With numberOfDots = originalLength, each dot represents one testimonial
         setCurrentDot(visibleIndex)
 
-        // Infinite scroll fix
-        const totalCards = circularTestimonials.length
-        const firstSectionEnd = originalLength * cardWidthWithGap
-        const lastSectionStart = (totalCards - originalLength) * cardWidthWithGap
+        // ✅ Infinite scroll fix: keep inside middle section
+        const middleSectionStart = originalLength * cardWidthWithGap
+        const middleSectionEnd = (2 * originalLength) * cardWidthWithGap
 
-        if (adjustedScrollLeft < firstSectionEnd * 0.1) {
+        if (adjustedScrollLeft < middleSectionStart) {
             slider.scrollLeft = adjustedScrollLeft + originalLength * cardWidthWithGap
-        } else if (adjustedScrollLeft > lastSectionStart + originalLength * cardWidthWithGap * 0.9) {
+        } else if (adjustedScrollLeft >= middleSectionEnd) {
             slider.scrollLeft = adjustedScrollLeft - originalLength * cardWidthWithGap
         }
     }
@@ -126,7 +123,7 @@ const TestimonialsSection = () => {
         const cardGap = 32
         const cardWidthWithGap = cardBaseWidth + cardGap
 
-        // Each dot represents one testimonial, so dotIndex is the testimonial index
+        // Target inside the middle section
         const targetIndex = originalLength + dotIndex
 
         slider.scrollTo({
@@ -140,11 +137,11 @@ const TestimonialsSection = () => {
         clearInterval(autoScrollIntervalRef.current)
         autoScrollIntervalRef.current = setInterval(() => {
             setCurrentDot(prevDot => {
-                const nextDot = (prevDot + 1) % numberOfDots // Use dynamic number of dots
+                const nextDot = (prevDot + 1) % numberOfDots
                 scrollToSection(nextDot)
                 return nextDot
             })
-        }, 10000) // 10 seconds
+        }, 10000) // every 10s
     }
 
     const resetAutoScroll = () => {
@@ -154,7 +151,7 @@ const TestimonialsSection = () => {
 
     const handleDotClick = (dotIndex) => {
         scrollToSection(dotIndex)
-        resetAutoScroll() // Reset the timer when user clicks
+        resetAutoScroll()
     }
 
     useEffect(() => {
@@ -165,6 +162,7 @@ const TestimonialsSection = () => {
         const cardGap = 32
         const cardWidthWithGap = cardBaseWidth + cardGap
 
+        // Start in the middle section
         slider.scrollLeft = originalLength * cardWidthWithGap
 
         const handleScroll = () => {
@@ -173,10 +171,10 @@ const TestimonialsSection = () => {
 
         slider.addEventListener("scroll", handleScroll, { passive: true })
 
-        // Initial opacity update after setting scroll position
+        // Initial update
         setTimeout(() => updateOpacity(), 100)
 
-        // Start auto-scroll
+        // Auto-scroll
         startAutoScroll()
 
         return () => {
@@ -185,13 +183,17 @@ const TestimonialsSection = () => {
         }
     }, [isMobile, numberOfDots])
 
-    // Calculate padding based on responsive card width
+    // Half card width for padding
     const halfCardWidthForPadding = useMemo(() => {
-        return isMobile ? 179 : 289.5; // Half of card width
+        return isMobile ? 179 : 289.5;
     }, [isMobile]);
 
     return (
-        <section ref={sectionRef} id="testimonials" className="stars py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 overflow-hidden">
+        <section
+            ref={sectionRef}
+            id="testimonials"
+            className="stars py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 overflow-hidden"
+        >
             <h2 className="section-title" ref={titleRef}>
                 What<span className="font-serif">'</span>s it like to work with me?
             </h2>
@@ -206,12 +208,17 @@ const TestimonialsSection = () => {
                 }}
             >
                 {circularTestimonials.map((testimonial, index) => (
-                    <div key={`${index}-${testimonial.name}`} className="flex-shrink-0" style={{ scrollSnapAlign: "center" }}>
+                    <div
+                        key={`${index}-${testimonial.name}`}
+                        className="flex-shrink-0"
+                        style={{ scrollSnapAlign: "center" }}
+                    >
                         <TestimonialCard {...testimonial} />
                     </div>
                 ))}
             </div>
-            {/* Dots Navigation */}
+
+            {/* Dots */}
             <div className="flex justify-center items-center gap-3 mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32">
                 {[...Array(numberOfDots)].map((_, index) => (
                     <button
@@ -220,7 +227,9 @@ const TestimonialsSection = () => {
                         className={`
                             w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6
                             rounded-full transition-all duration-300 ${
-                            currentDot === index ? "bg-violet-500 scale-125" : "bg-white hover:bg-white/70 cursor-pointer"
+                            currentDot === index
+                                ? "bg-violet-500 scale-125"
+                                : "bg-white hover:bg-white/70 cursor-pointer"
                         }`}
                         aria-label={`Go to section ${index + 1} of testimonials`}
                     />
@@ -229,4 +238,5 @@ const TestimonialsSection = () => {
         </section>
     )
 }
+
 export default TestimonialsSection

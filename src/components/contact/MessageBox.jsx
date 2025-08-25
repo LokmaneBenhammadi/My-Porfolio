@@ -3,7 +3,7 @@ import { useState, useRef } from "react"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
 
-const MessageBox = ({isMobile, setToast}) => {
+const MessageBox = ({ isMobile, setToast }) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -111,8 +111,13 @@ const MessageBox = ({isMobile, setToast}) => {
     }
     return (
         <>
-            <div ref={formRef} className="w-full h-auto px-5 pt-5 pb-10 rounded-2xl bg-blue-night message-box-hover md:w-[550px] md:p-8">
-                <h3 className="font-fsp-stencil text-white text-[12px] mb-[20px] md:text-xl md:mb-8">Send me a message</h3>
+            <div
+                ref={formRef}
+                className="w-full h-auto px-5 pt-5 pb-10 rounded-2xl bg-blue-night message-box-hover md:w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl md:p-6 md:px-6 md:pt-6 md:pb-12 2xl:px-8 2xl:pt-8 2xl:pb-18 md:rounded-2xl lg:rounded-3xl xl:rounded-3xl"
+            >
+                <h3 className="font-fsp-stencil text-white text-xs mb-[20px] md:text-sm lg:text-base xl:text-lg 2xl:text-xl md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-10">
+                    Send me a message
+                </h3>
                 <form onSubmit={onSubmit}>
                     <input
                         ref={nameRef}
@@ -122,7 +127,7 @@ const MessageBox = ({isMobile, setToast}) => {
                         onChange={handleChange}
                         onFocus={() => handleFocus(nameRef)}
                         onBlur={() => handleBlur(nameRef, formData.name)}
-                        className="focus-input custom-input block outline-none w-full h-auto font-fsp-bold font-normal text-[2vw] bg-gray-input border-[1.25px] border-gray-input-border p-[10px] rounded-[4px] mb-[15px] md:h-[48px] md:text-xs md:rounded-lg md:mb-6"
+                        className="focus-input custom-input block outline-none w-full h-auto font-fsp-bold font-normal text-[2vw] bg-gray-input border-[1.25px] border-gray-input-border p-[10px] rounded-[4px] mb-[15px] md:h-10 xl:h-11 2xl:h-12 md:text-[8px] lg:text-[10px] 2xl:text-xs lg:px-[10px] lg:py-3 2xl:px-[10px] 2xl:py-[15px] md:rounded-lg lg:rounded-xl xl:rounded-lg md:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7"
                         placeholder="Your Name"
                         required
                     />
@@ -134,7 +139,7 @@ const MessageBox = ({isMobile, setToast}) => {
                         onChange={handleChange}
                         onFocus={() => handleFocus(emailRef)}
                         onBlur={() => handleBlur(emailRef, formData.email)}
-                        className="focus-input custom-input block outline-none w-full h-auto font-fsp-bold font-normal text-[2vw] bg-gray-input border-[1.25px] border-gray-input-border p-[10px] rounded-[4px] mb-[15px] md:h-[48px] md:text-xs md:rounded-lg md:mb-6"
+                        className="focus-input custom-input block outline-none w-full h-auto font-fsp-bold font-normal text-[2vw] bg-gray-input border-[1.25px] border-gray-input-border p-[10px] rounded-[4px] mb-[15px] md:h-10 xl:h-11 2xl:h-12 md:text-[8px] lg:text-[10px] 2xl:text-xs lg:px-[10px] lg:py-3 2xl:px-[10px] 2xl:py-[15px] md:rounded-lg lg:rounded-xl xl:rounded-lg md:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7"
                         placeholder="Your Email"
                         required
                     />
@@ -145,14 +150,14 @@ const MessageBox = ({isMobile, setToast}) => {
                         onChange={handleChange}
                         onFocus={() => handleFocus(messageRef)}
                         onBlur={() => handleBlur(messageRef, formData.message)}
-                        className="focus-input custom-input block outline-none w-full h-auto font-fsp-bold font-normal text-[2vw] resize-none bg-gray-input border-[1.25px] border-gray-input-border p-[10px] rounded-[4px] mb-[20px] md:h-[140px] md:text-xs md:rounded-lg md:mb-8"
+                        className="focus-input custom-input block outline-none w-full h-auto font-fsp-bold font-normal text-[2vw] resize-none bg-gray-input border-[1.25px] border-gray-input-border p-[10px] rounded-[4px] mb-[20px] md:h-24 lg:h-28 xl:h-32 2xl:h-[140px] md:text-[8px] lg:text-[10px] 2xl:text-xs lg:px-[10px] lg:py-3 2xl:px-[10px] 2xl:py-[15px] md:rounded-lg lg:rounded-xl xl:rounded-lg md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-10"
                         placeholder="Your Message"
                         required
                     />
                     <button
                         type="submit"
                         disabled={result === "Sending..."}
-                        className="send-button w-full flex-center bg-violet-primary font-fsp-stencil font-medium text-[10px] px-[100px] py-[6px] rounded-[8px] transition-all duration-300 hover:bg-violet-600 hover:shadow-lg hover:shadow-violet-primary/30 disabled:opacity-70 md:text-base md:px-7 md:py-4 md:rounded-2xl cursor-pointer"
+                        className="send-button w-full flex-center bg-violet-primary font-fsp-stencil font-medium text-xs px-[100px] py-[6px] rounded-[8px] transition-all duration-300 hover:bg-violet-600 hover:shadow-lg hover:shadow-violet-primary/30 disabled:opacity-70 lg:text-sm 2xl:text-base md:px-6 lg:px-7 xl:px-8 2xl:px-10 lg:py-2 2xl:py-3 md:rounded-xl lg:rounded-2xl xl:rounded-2xl cursor-pointer"
                     >
                         {result || "Send Message"}
                     </button>

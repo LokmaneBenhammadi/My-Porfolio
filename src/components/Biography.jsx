@@ -156,24 +156,31 @@ const Biography = () => {
                 <div className="text-center md:text-left">
                     <p
                         ref={resumeRef}
-                        className="w-[358px] md:w-[967px] font-fsp-bold text-[10px] md:text-2xl font-normal leading-[1.8] mb-4 md:mb-8"
-                    >
-                        <span className="block">
+                        className="
+                            w-full max-w-[967px]
+                            font-fsp-bold font-normal leading-relaxed
+                            text-center md:text-left
+                            text-[12px] sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl
+                            mb-4 md:mb-8
+                          "
+                                            >
+                          <span className="block">
                             I<span className="font-serif">'</span>m a passionate UI UX designer with a sharp eye for detail and a love
                             for intuitive, user centred design.
-                        </span>
-                        <span className="block">
+                          </span>
+                                                <span className="block">
                             Currently studying at the Higher School of Computer Science in Sidi Bel Abbes, I blend creativity with
                             clear thinking to turn ideas into clean, functional products.
-                        </span>
-                        <span className="block">
+                          </span>
+                                                <span className="block">
                             I<span className="font-serif">'</span>ve worked on projects like{" "}
-                            <span className="text-violet-primary">Dirasati</span> and{" "}
-                            <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
+                                                    <span className="text-violet-primary">Dirasati</span> and{" "}
+                                                    <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
                             understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
                             design all focused on creating experiences that truly work for users.
-                        </span>
+                          </span>
                     </p>
+
                     <PurpleButton
                         onClick={downloadResume}
                         className="btn-purple text-xs px-[10px] py-[6px] rounded-md md:text-xl md:py-4 md:px-7 md:rounded-2xl"

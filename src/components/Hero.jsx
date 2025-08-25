@@ -18,6 +18,10 @@ export default function Hero() {
     const designerRef = useRef(null)
     const lettersRefs = useRef({ uiux: [], designer: [] })
     const [upgraded, setUpgraded] = useState(false) // when true, render per-letter spans
+    const buttonsClasses = {
+        purple: "btn-purple rounded-lg text-sm px-12 py-2 md:text-base lg:text-lg xl:text-xl 2xl:text-[28px] 2xl:rounded-2xl md:px-4 lg:px-5 lg:py-2 xl:px-6 xl:py-3 2xl:px-7 2xl:py-4",
+        white: "w-fit px-[58px] py-2 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-[28px] 2xl:rounded-2xl md:px-4 lg:px-5 lg:py-2 xl:px-6 xl:py-3 2xl:px-7 2xl:py-4 font-fsp-stencil font-medium rounded-lg border-[1.5px] md:border-[3px] cursor-pointer text-center transition-all duration-300 bg-transparent border-white text-white hover:border-white/90 hover:shadow-[0_0_10px_rgba(255,255,255,0.5),inset_0_0_10px_rgba(255,255,255,0.3)] hover:[text-shadow:0_0_8px_rgba(255,255,255,0.6),_0_0_15px_rgba(255,255,255,0.4)]",
+    }
 
     // Render plain text first — this is the LCP paint friendly state
     // After paint + idle we'll upgrade to per-letter DOM and lazy-load GSAP
@@ -176,12 +180,12 @@ export default function Hero() {
 
                 <div className="button-container flex md:flex-row flex-col items-center gap-4 md:gap-12">
                     <a href="#projects">
-                        <PurpleButton className="btn-purple rounded-lg text-sm px-12 py-2 md:text-[28px] md:rounded-2xl md:px-7 md:py-4">
+                        <PurpleButton className={buttonsClasses.purple}>
                             View My Work
                         </PurpleButton>
                     </a>
                     <a href="#contact">
-                        <WhiteButton className="w-fit px-[58px] py-2 md:px-7 md:py-4 text-sm md:text-[28px] font-fsp-stencil font-medium rounded-lg md:rounded-2xl border-[1.5px] md:border-[3px] cursor-pointer text-center transition-all duration-300 bg-transparent border-white text-white hover:border-white/90 hover:shadow-[0_0_10px_rgba(255,255,255,0.5),inset_0_0_10px_rgba(255,255,255,0.3)] hover:[text-shadow:0_0_8px_rgba(255,255,255,0.6),_0_0_15px_rgba(255,255,255,0.4)]">
+                        <WhiteButton className={buttonsClasses.white}>
                             Get in Touch
                         </WhiteButton>
                     </a>
