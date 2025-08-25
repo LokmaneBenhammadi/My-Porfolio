@@ -124,7 +124,7 @@ body {
 
 /* Section Title Utility Class */
 .section-title {
-    @apply font-fsp-stencil font-medium text-xl md:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
+    @apply font-fsp-stencil font-medium text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
 }
 
 .split-char {
