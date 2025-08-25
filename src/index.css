@@ -231,16 +231,17 @@ body {
         @apply inset-0 size-full bg-[url("/images/global/Stars.webp")];
     }
     #hero {
-        @apply relative z-10 w-full min-h-[90vh];
+        @apply relative z-10 w-full min-h-[90vh] flex items-center justify-center;
         .content {
-            @apply container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-30 top-[60vw] md:top-[32vh] px-0 sm:px-5 text-center;
+            @apply text-center px-5 2xl:-mb-20;
 
             p:first-of-type {
                 @apply font-fsp-bold text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-[32px] font-normal;
             }
             h1 {
-                @apply font-fsp-stencil font-medium text-5xl leading-[120%] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[7vw] mt-2 transition-all duration-100;
+                @apply font-fsp-stencil font-medium text-5xl leading-[120%] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[7vw] mt-2 transition-all duration-100 whitespace-nowrap;
             }
+
             h1:hover {
                 color: #fff;
                 text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px
