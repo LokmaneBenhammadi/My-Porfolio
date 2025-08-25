@@ -231,7 +231,7 @@ body {
         @apply inset-0 size-full bg-[url("/images/global/Stars.webp")];
     }
     #hero {
-        @apply relative z-10 w-full min-h-[80vh] md:min-h-[90vh] flex items-center justify-center;
+        @apply relative z-10 w-full min-h-[90vh] flex items-center justify-center;
         .content {
             @apply text-center px-5 2xl:-mb-20;
 
