@@ -336,7 +336,7 @@ body {
         @apply font-fsp-stencil text-[10px] md:text-[22px] text-white mb-1 md:mb-[6px] font-medium;
     }
     .project-card-desc {
-        @apply w-9/12 mx-auto md:w-full font-fsp-light font-light text-white text-[7px] md:text-base leading-[120%] mb-[10px] md:mb-6 tracking-wider;
+        @apply w-9/12 mx-auto md:w-full font-fsp-light font-light text-white text-[7px] md:text-base leading-[120%] mb-[10px] md:mb-6 tracking-wider px-2 md:px-4;
     }
     .see-more-wrapper {
         @apply flex justify-center;
