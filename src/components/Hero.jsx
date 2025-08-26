@@ -132,7 +132,7 @@ export default function Hero() {
             <span
                 key={i}
                 ref={(el) => (lettersRefs.current[key][i] = el)}
-                className="letter-span inline-block transition-[text-shadow,transform] duration-200 ease-out"
+                className="letter-span inline-block transition-[text-shadow,transform] duration-200 ease-out shine-default shine-hover"
                 style={{ textShadow: "0 0 8px rgba(255,255,255,0.3)" }}
             >
         {char === " " ? "\u00A0" : char}

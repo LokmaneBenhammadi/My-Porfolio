@@ -123,6 +123,18 @@ body {
     @apply border border-amber-950;
 }
 
+/* globals.css */
+@layer utilities {
+    .shine-default {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+    .shine-hover:hover {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 25px rgba(255, 255, 255, 0.5);
+    }
+}
+
+
 .text-shadow-white {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
     @apply text-white font-bold brightness-110 transition-all duration-300;
