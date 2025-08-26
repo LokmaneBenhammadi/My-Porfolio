@@ -42,7 +42,7 @@ export const projectsData = [
     projectImg: portfolioCard,
     projectTitle: "Space Portfolio",
     projectDescription: "A modern portfolio inspired by space and cosmic aesthetics.",
-    tags: ["Figma", "UI/UX", "Responsive"],
+    tags: ["Figma", "UI UX", "Responsive"],
     link: "https://www.behance.net/gallery/232934627/Space-Portfolio"
   },
   {
