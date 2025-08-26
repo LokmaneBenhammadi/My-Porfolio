@@ -193,7 +193,7 @@ const ContactSection = () => {
                         ref={paragraphRef}
                         className="font-fsp-bold text-[8px] text-center mb-[20px] text-white md:text-xs lg:text-sm 2xl:text-base md:text-left md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-8 md:w-full md:leading-relaxed lg:leading-relaxed xl:leading-relaxed"
                     >
-                        I'm always interested in new opportunities and exciting projects. Whether you have a question or just want
+                        I m always interested in new opportunities and exciting projects. Whether you have a question or just want
                         to say hi, I ll try my best to get back to you
                     </p>
                     <div ref={(el) => (contactInfoRefs.current[0] = el)}>
