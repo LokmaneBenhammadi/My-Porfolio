@@ -65,7 +65,7 @@ export const projectsData = [
     id: 4,
     projectImg: kitabyCard,
     projectTitle: "Kitaby",
-    projectDescription: "A social app for book lovers to share & discover reads.",
+    projectDescription: "A social app for book lovers to share discover reads.",
     tags: ["Figma", "Flutter", "Frontend"],
     link: "https://www.behance.net/gallery/232934023/Kitaby"
   },
