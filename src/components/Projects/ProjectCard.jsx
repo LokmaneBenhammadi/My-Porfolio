@@ -1,4 +1,4 @@
-import dirasatiCard from "/images/projects/dirasati.png"
+import dirasatiCard from "/images/projects/dirasati.webp"
 import PurpleButton from "../buttons/PurpleButton"
 
 const ProjectCard = ({

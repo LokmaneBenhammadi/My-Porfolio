@@ -1,7 +1,7 @@
-import dirasatiCard from "/images/projects/dirasati.png"
-import portfolioCard from "/images/projects/portfolio.png"
-import museumCard from "/images/projects/museum.png"
-import kitabyCard from "/images/projects/kitaby.png"
+import dirasatiCard from "/images/projects/dirasati.webp"
+import portfolioCard from "/images/projects/portfolio.webp"
+import museumCard from "/images/projects/museum.webp"
+import kitabyCard from "/images/projects/kitaby.webp"
 import AdobeXD from "/images/skills/AdobeXD.png"
 import Coding from "/images/skills/Coding.png"
 import DesignThinking from "/images/skills/DesignThinking.png"
@@ -42,7 +42,7 @@ export const projectsData = [
     projectImg: portfolioCard,
     projectTitle: "Space Portfolio",
     projectDescription: "A modern portfolio inspired by space and cosmic aesthetics.",
-    tags: ["Figma", "UI/UX", "Responsive"],
+    tags: ["Figma", "UI UX", "Responsive"],
     link: "https://www.behance.net/gallery/232934627/Space-Portfolio"
   },
   {
@@ -65,7 +65,7 @@ export const projectsData = [
     id: 4,
     projectImg: kitabyCard,
     projectTitle: "Kitaby",
-    projectDescription: "A social app for book lovers to share & discover reads.",
+    projectDescription: "A social app for book lovers to share discover reads.",
     tags: ["Figma", "Flutter", "Frontend"],
     link: "https://www.behance.net/gallery/232934023/Kitaby"
   },
