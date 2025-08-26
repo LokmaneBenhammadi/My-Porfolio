@@ -97,7 +97,7 @@ const SkillProgress = ({ skillName, skillPercentage, index }) => {
             <div>
       <span
           ref={percentageRef}
-          className="block text-[clamp(9px,1vw,16px)] font-sans font-black"
+          className="block text-[clamp(9px,1vw,18px)] font-technor-bold font-black"
       >
         0 %
       </span>

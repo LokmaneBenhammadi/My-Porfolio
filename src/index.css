@@ -70,6 +70,15 @@
     size-adjust: 100%;
 }
 
+@font-face {
+    font-family: "Technor Bold";
+    src: url("/fonts/Technor-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
+}
+
 @theme {
     --font-fsp-stencil: "Universo Stencil Demo", Arial, sans-serif;
     --font-fsp-bold: "Universo Bold Demo", Arial, sans-serif;
@@ -79,6 +88,7 @@
     --font-fsp-thin: "UniversoDemoThin", Arial, sans-serif;
     --font-poppins-medium: "Poppins", Arial, sans-serif;
     --font-montserrat: "Montserrat Arabic", Arial, sans-serif;
+    --font-technor-bold: "Technor Bold", Arial, sans-serif;
     --color-violet-primary: #633eb7;
     --color-violet-secondary: #392760;
     --color-white-secondary: #fefefe;
