@@ -174,7 +174,7 @@ const Biography = () => {
             </span>
                         <span className="inline md:block">
               I<span className="font-serif">'</span>ve worked on projects like{" "}
-                            <span className="text-violet-primary">Dinaseti</span> and{" "}
+                            <span className="text-violet-primary">Dirasati</span> and{" "}
                             <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
               understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
               design all focused on creating experiences that truly work for users.
